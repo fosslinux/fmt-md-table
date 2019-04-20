@@ -3,7 +3,6 @@ import fileinput
 import sys
 
 def parse_input():
-    global table
     try:
         sys.argv[1]
         table = open(sys.argv[1], 'r')
@@ -16,9 +15,9 @@ def parse_input():
     except:
         print("some parsing error occured!")
         sys.exit(1)
+    return table
 
-def format_input():
-    global table
+def format_input(table):
     for index in range(len(table)):
         table[index] = table[index].rstrip()
         if not table[index]:
@@ -29,8 +28,9 @@ def format_input():
             table[index].append(column)
         del table[index][0]
         del table[index][-1]
+    return table
 
-def get_column_length():
+def get_column_length(table):
     columns_num = len(table[0])
     column_length = [0 for __ in range(columns_num)]
     for line in table:
@@ -38,21 +38,21 @@ def get_column_length():
             print("invalid syntax!")
             print(line)
             sys.exit(1)
-        for column, index in zip(line, range(len(line))):
+        for index, column in enumerate(line):
             if len(column) > column_length[index]:
                 column_length[index] = len(column)
     return column_length
 
-def pad_table(column_length):
-    global table
-    for line, table_index in zip(table, range(len(table))):
-        for column, column_index in zip(line, range(len(line))):
+def pad_table(table, column_length):
+    for table_index, line in enumerate(table):
+        for column_index, column in enumerate(line):
             if column_length[column_index] > len(column):
                 padding = column_length[column_index] - len(column)
                 for __ in range(padding):
                     table[table_index][column_index] += ' '
+    return table
 
-def print_table():
+def print_table(table):
     for table_index in range(len(table)):
         print("|", end='')
         for column_index in range(len(table[table_index])):
@@ -60,11 +60,10 @@ def print_table():
         print()
 
 def main():
-    parse_input()
-    format_input()
-    column_length = get_column_length()
-    print(column_length)
-    pad_table(column_length)
-    print_table()
+    table = parse_input()
+    table = format_input(table)
+    column_length = get_column_length(table)
+    table = pad_table(table, column_length)
+    print_table(table)
 
 main()
