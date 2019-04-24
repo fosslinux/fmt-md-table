@@ -4,16 +4,9 @@ import sys
 
 def parse_input():
     try:
-        sys.argv[1]
-        table = open(sys.argv[1], 'r').readlines()
-    except IndexError:
-        try:
-            table = sys.stdin.readlines()
-        except:
-            print("some stdin error occured!")
-            sys.exit(1)
+        table = sys.stdin.readlines()
     except:
-        print("some parsing error occured!")
+        print("some stdin error occured!")
         sys.exit(1)
     return table
 
