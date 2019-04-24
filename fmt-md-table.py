@@ -3,11 +3,7 @@ import fileinput
 import sys
 
 def parse_input():
-    try:
-        table = sys.stdin.readlines()
-    except:
-        print("some stdin error occured!")
-        sys.exit(1)
+    table = sys.stdin.readlines()
     return table
 
 def format_input(table):
@@ -19,10 +15,8 @@ def format_input(table):
             continue
         new_row = []
         # slice to remove first and last indexes
-        for column in row.split('|')[1:-1]:
-            new_row.append(column)
-        # assign our new row to the table
-        table[index] = new_row
+        # and assign split row to table
+        table[index] = row.split('|')[1:-1]
     return table
 
 def get_column_length(table):
@@ -51,7 +45,7 @@ def pad_table(table, column_length):
                 else:
                     pad_char = " "
                 for __ in range(padding):
-                    table[table_index][column_index] += pad_char
+                    table[row_index][column_index] += pad_char
     return table
 
 def print_table(table):
