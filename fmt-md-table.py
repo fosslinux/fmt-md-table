@@ -5,7 +5,7 @@ import sys
 def parse_input():
     try:
         sys.argv[1]
-        table = open(sys.argv[1], 'r')
+        table = open(sys.argv[1], 'r').readlines()
     except IndexError:
         try:
             table = sys.stdin.readlines()
@@ -66,4 +66,5 @@ def main():
     table = pad_table(table, column_length)
     print_table(table)
 
-main()
+if __name__ == "__main__":
+    main()
