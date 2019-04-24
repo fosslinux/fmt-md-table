@@ -39,12 +39,19 @@ def get_column_length(table):
     return column_length
 
 def pad_table(table, column_length):
-    for table_index, row in enumerate(table):
+    for row_index, row in enumerate(table):
         for column_index, column in enumerate(row):
             if column_length[column_index] > len(column):
                 padding = column_length[column_index] - len(column)
+                # if its the second row in the table, 
+                # its meant to have dashes insetad of spaces
+                # pad dashes as a result
+                if row_index == 1:
+                    pad_char = "-"
+                else:
+                    pad_char = " "
                 for __ in range(padding):
-                    table[table_index][column_index] += ' '
+                    table[table_index][column_index] += pad_char
     return table
 
 def print_table(table):
