@@ -25,7 +25,7 @@ def get_column_length(table):
     for row in table:
         if len(row) != columns_num:
             print("rows have different number of columns!", file=sys.stderr)
-            print(line)
+            print(row)
             sys.exit(1)
         for index, column in enumerate(row):
             if len(column) > column_length[index]:
