@@ -2,21 +2,35 @@
 import fileinput
 import sys
 
+from not_list_exception import NotListException
+
 def parse_input():
     table = sys.stdin.readlines()
     return table
 
+def check_is_list(var):
+    if not type(var) is list:
+        raise NotListException
+
 def format_input(table):
+    check_is_list(table)
     for index, row in enumerate(table):
+        print(index)
         row = row.rstrip()
         if not row:
-            # deletes the actual table index
-            del table[index]
             continue
-        new_row = []
+            # later empty rows are stripped
         # slice to remove first and last indexes
         # and assign split row to table
         table[index] = row.split('|')[1:-1]
+    return table
+
+def strip_empty_rows(table):
+    while index < len(table):
+        if not table[index]:
+            del table[index]
+        else:
+            index += 1
     return table
 
 def get_column_length(table):
@@ -59,6 +73,7 @@ def print_table(table):
 def main():
     table = parse_input()
     table = format_input(table)
+    table = strip_empty_rows(table)
     column_length = get_column_length(table)
     table = pad_table(table, column_length)
     print_table(table)
