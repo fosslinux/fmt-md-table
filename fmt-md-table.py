@@ -26,6 +26,7 @@ def format_input(table):
     return table
 
 def strip_empty_rows(table):
+    index = 0
     while index < len(table):
         if not table[index]:
             del table[index]
