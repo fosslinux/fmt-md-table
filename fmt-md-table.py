@@ -15,7 +15,6 @@ def check_is_list(var):
 def format_input(table):
     check_is_list(table)
     for index, row in enumerate(table):
-        print(index)
         row = row.rstrip()
         if not row:
             continue
