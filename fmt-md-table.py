@@ -2,6 +2,7 @@
 import fileinput
 import sys
 
+# TODO: make this cleaner
 from not_list_exception import NotListException
 
 def parse_input():
