@@ -2,8 +2,8 @@
 import fileinput
 import sys
 
-# TODO: make this cleaner
-from not_list_exception import NotListException
+class NotListException(Exception):
+    pass
 
 def parse_input():
     table = sys.stdin.readlines()

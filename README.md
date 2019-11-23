@@ -6,4 +6,4 @@ I made this little piece of code when I got annoyed that I kept having to format
 
 This automatically adds spaces to the end of each column so the raw markdown is more readable.
 
-hope this helps someone out there :3
+Hope this helps someone out there :3

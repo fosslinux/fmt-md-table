@@ -1,2 +1,0 @@
-class NotListException(Exception):
-    pass
